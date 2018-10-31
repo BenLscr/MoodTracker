@@ -3,8 +3,8 @@ package com.lescour.ben.moodtracker;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,41 +24,59 @@ public class MainActivity extends AppCompatActivity {
             R.color.banana_yellow,
     };
     private int clrPosition = 3;
-    private float initialY;
+    private float initialY;  //Position where you down your finger on the screen.
 
+    /**
+     * Start the application with happy mood, his background color appropriate, historic button and
+     * a button to add comment.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // Start with the happy mood.
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
         ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
         imgSwipe.setImageResource(lst_images[imgPosition]);
-        imgSwipe.getResources().getColor(clrPosition);
-        imgSwipe.setBackgroundColor(lst_colors[clrPosition]);
+        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
 
     }
 
+    /**
+     * Detect the swipe to change the mood and his background color.
+     * @param motionEvent
+     * @return
+     */
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         int action = motionEvent.getActionMasked();
-
         switch (action) {
             case (MotionEvent.ACTION_DOWN):
+                //Memories the position where you down your finger on the screen.
                 initialY = motionEvent.getY();
                 break;
             case (MotionEvent.ACTION_UP):
                 float finalY = motionEvent.getY();
                 if (initialY < finalY) {
+                    //Increase the position in the background color list and display it.
+                    FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+                    clrPosition++;
+                    frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
+                    //Increase the position in the image mood list and display it.
                     ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
                     imgPosition++;
                     imgSwipe.setImageResource(lst_images[imgPosition]);
-                    Toast.makeText(this, "Up to Down swipe performed", Toast.LENGTH_SHORT).show();
                 }
                 if (initialY > finalY) {
+                    //Decrease the position in the background color list and display it.
+                    FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+                    clrPosition--;
+                    frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
+                    //Decrease the position in the image mood list and display it.
                     ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
                     imgPosition--;
                     imgSwipe.setImageResource(lst_images[imgPosition]);
-                    Toast.makeText(this, "Down to Up swipe performed", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }
