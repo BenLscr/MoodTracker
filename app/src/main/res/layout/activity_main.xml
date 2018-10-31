@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/activity_main_viewpager"
+    <ImageView
+        android:id="@+id/imgSwipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:paddingHorizontal="90dp"
+        android:layout_gravity="center"/>
 
     <ImageButton
         android:layout_width="wrap_content"
