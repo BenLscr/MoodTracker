@@ -1,9 +1,14 @@
 package com.lescour.ben.moodtracker;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +46,32 @@ public class MainActivity extends AppCompatActivity {
         imgSwipe.setImageResource(lst_images[imgPosition]);
         frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
 
+        ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
+        ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
+
+        icNoteAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addYourComment();
+            }
+        });
+    }
+
+    public void addYourComment() {
+        final Dialog addComment = new Dialog(MainActivity.this);
+        //addComment.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        addComment.setContentView(R.layout.ic_add_comment);
+
+        Button mAdd = (Button) addComment.findViewById(R.id.add);
+        mAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //penser à sauvegarder le commentaire
+                addComment.cancel();
+            }
+        });
+
+        addComment.show();
     }
 
     /**
