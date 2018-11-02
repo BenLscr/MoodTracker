@@ -1,6 +1,7 @@
 package com.lescour.ben.moodtracker;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -55,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 addYourComment();
             }
         });
+
+        icHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent historic = new Intent(MainActivity.this, Historic.class);
+                startActivity(historic);
+            }
+        });
     }
 
     public void addYourComment() {
@@ -89,25 +98,31 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case (MotionEvent.ACTION_UP):
                 float finalY = motionEvent.getY();
+                FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+                ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
                 if (initialY < finalY) {
-                    //Increase the position in the background color list and display it.
-                    FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-                    clrPosition++;
-                    frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
-                    //Increase the position in the image mood list and display it.
-                    ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
-                    imgPosition++;
-                    imgSwipe.setImageResource(lst_images[imgPosition]);
+                    try {
+                        //Increase the position in the background color list / image mood list and display it.
+                        clrPosition++;
+                        imgPosition++;
+                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
+                        imgSwipe.setImageResource(lst_images[imgPosition]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        clrPosition = 4;
+                        imgPosition = 4;
+                    }
                 }
                 if (initialY > finalY) {
-                    //Decrease the position in the background color list and display it.
-                    FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-                    clrPosition--;
-                    frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
-                    //Decrease the position in the image mood list and display it.
-                    ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
-                    imgPosition--;
-                    imgSwipe.setImageResource(lst_images[imgPosition]);
+                    try {
+                        //Decrease the position in the background color list / image mood list and display it.
+                        clrPosition--;
+                        imgPosition--;
+                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
+                        imgSwipe.setImageResource(lst_images[imgPosition]);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        clrPosition = 0;
+                        imgPosition = 0;
+                    }
                 }
                 break;
         }
