@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //penser à sauvegarder le commentaire
+                // TODO penser à sauvegarder le commentaire
                 addComment.cancel();
             }
         });
