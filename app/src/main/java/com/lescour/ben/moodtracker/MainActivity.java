@@ -13,6 +13,13 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import java.text.FieldPosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private int [] lst_images = {
@@ -51,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
         if (getColor() != getResources().getColor(R.color.colorAccent)) {
             clrHier = getColor();
         }
+
+        // The current date
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        format.setCalendar(calendar);
+        String currentDay = format.format(calendar.getTime());
+        System.out.println(currentDay);
+
         // Start with the happy mood.
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
         ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
@@ -142,16 +157,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveColor(int clrPosition) {
-        // TODO essayer de foutre SharedPreferences en valeur (tout en haut)
         mSharedPreferences = getSharedPreferences("backgroundColor", MODE_PRIVATE);
         mSharedPreferences.edit().putInt(PREF_KEY_COLOR, clrPosition).apply();
     }
 
     private int getColor() {
-        // TODO essayer de foutre SharedPreferences en valeur (tout en haut)
         mSharedPreferences = getSharedPreferences("backgroundColor", MODE_PRIVATE);
         clrHier = mSharedPreferences.getInt(PREF_KEY_COLOR, getResources().getColor(R.color.colorAccent));
         return clrHier;
     }
-
 }
