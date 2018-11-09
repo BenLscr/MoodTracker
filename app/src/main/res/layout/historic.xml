@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:id="@+id/historicLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/oneWeekAgo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -14,6 +17,7 @@
         android:text="Il y a une semaine"/>
 
     <TextView
+        android:id="@+id/sixDaysAgo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -23,6 +27,7 @@
         android:text="Il y a six jours"/>
 
     <TextView
+        android:id="@+id/fiveDaysAgo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -32,6 +37,7 @@
         android:text="Il y a cinq jours"/>
 
     <TextView
+        android:id="@+id/fourDaysAgo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -41,6 +47,7 @@
         android:text="Il y a quatre jours"/>
 
     <TextView
+        android:id="@+id/threeDaysAgo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -50,6 +57,7 @@
         android:text="Il y a trois jours"/>
 
     <TextView
+        android:id="@+id/avHier"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -59,6 +67,7 @@
         android:text="Avant-hier"/>
 
     <TextView
+        android:id="@+id/hier"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
