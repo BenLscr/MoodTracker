@@ -1,4 +1,4 @@
-package com.lescour.ben.moodtracker;
+package com.lescour.ben.moodtracker.Controller;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -12,7 +12,9 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.lescour.ben.moodtracker.Model.Mood;
+import com.lescour.ben.moodtracker.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +23,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
+    private Mood mMood;
     private int [] lst_images = {
             R.mipmap.smiley_sad,
             R.mipmap.smiley_disappointed,
@@ -28,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
             R.mipmap.smiley_happy,
             R.mipmap.smiley_super_happy
     };
-    private int imgPosition = 3;
     int [] lst_colors = {
             R.color.faded_red,
             R.color.warm_grey,
@@ -36,15 +38,12 @@ public class MainActivity extends AppCompatActivity {
             R.color.light_sage,
             R.color.banana_yellow,
     };
-    private int clrPosition = 3;
     private String currentDay;
     private final String PREF_KEY_COLOR = "PREF_KEY_COLOR";
     public int clrHier;
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
     private EditText commentInput;
-    private String comment;
-    private String currentPosCom;
 
     /**
      * Start the application with happy mood, his background color appropriate, historic button and
@@ -56,9 +55,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (getColor() != getResources().getColor(R.color.colorAccent)) {
+        /**if (getColor() != getResources().getColor(R.color.colorAccent)) {
             clrHier = getColor();
-        }
+        }*/
 
         // The current date
         Calendar calendar = new GregorianCalendar();
@@ -67,12 +66,14 @@ public class MainActivity extends AppCompatActivity {
         currentDay = format.format(calendar.getTime());
         System.out.println(currentDay);
 
+        mMood = new Mood();
+
         // Start with the happy mood.
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
         ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
-        imgSwipe.setImageResource(lst_images[imgPosition]);
-        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
-        saveColor(clrPosition);
+        imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
+        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        /**saveColor(clrPosition);*/
 
         ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
         ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
@@ -103,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO penser à sauvegarder le commentaire
-                comment = commentInput.getText().toString();
+                String comment = commentInput.getText().toString();
+                mMood.setComment(comment);
                 addComment.cancel();
             }
         });
@@ -111,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void oldComment() {
+        String comment = mMood.getComment();
         if (comment != null) {
             commentInput.setText(comment);
         }
@@ -135,26 +138,24 @@ public class MainActivity extends AppCompatActivity {
                 ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
                 if (initialY < finalY) {
                     try { //Increase the position in the background color list / image mood list and display it.
-                        clrPosition++;
-                        imgPosition++;
-                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
-                        imgSwipe.setImageResource(lst_images[imgPosition]);
-                        saveColor(clrPosition);
+                        mMood.setLstPosition(mMood.getLstPosition() + 1);
+                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+                        imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
+                        /**saveColor(clrPosition);*/
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        clrPosition = 4;
-                        imgPosition = 4;
+                        mMood.setLstPosition(4);
+                        mMood.setLstPosition(mMood.getLstPosition());
                     }
                 }
                 if (initialY > finalY) {
                     try { //Decrease the position in the background color list / image mood list and display it.
-                        clrPosition--;
-                        imgPosition--;
-                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
-                        imgSwipe.setImageResource(lst_images[imgPosition]);
-                        saveColor(clrPosition);
+                        mMood.setLstPosition(mMood.getLstPosition() - 1);
+                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+                        imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
+                        /**saveColor(clrPosition);*/
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        clrPosition = 0;
-                        imgPosition = 0;
+                        mMood.setLstPosition(0);
+                        mMood.setLstPosition(mMood.getLstPosition());
                     }
                 }
                 break;
@@ -162,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(motionEvent);
     }
 
-    private void saveColor(int clrPosition) {
+    /**private void saveColor(int clrPosition) {
         mSharedPreferences = getSharedPreferences("backgroundColor", MODE_PRIVATE);
         mSharedPreferences.edit().putInt(PREF_KEY_COLOR, clrPosition).apply();
     }
@@ -171,6 +172,6 @@ public class MainActivity extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences("backgroundColor", MODE_PRIVATE);
         clrHier = mSharedPreferences.getInt(PREF_KEY_COLOR, getResources().getColor(R.color.colorAccent));
         return clrHier;
-    }
+    }*/
 
 }
