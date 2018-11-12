@@ -12,11 +12,10 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
@@ -38,12 +37,13 @@ public class MainActivity extends AppCompatActivity {
             R.color.banana_yellow,
     };
     private int clrPosition = 3;
+    private String currentDay;
     private final String PREF_KEY_COLOR = "PREF_KEY_COLOR";
     public int clrHier;
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
-    private EditText commentInput;
     private String comment;
+    private String currentPosCom;
 
     /**
      * Start the application with happy mood, his background color appropriate, historic button and
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         format.setCalendar(calendar);
-        String currentDay = format.format(calendar.getTime());
+        currentDay = format.format(calendar.getTime());
         System.out.println(currentDay);
 
         // Start with the happy mood.
@@ -95,13 +95,13 @@ public class MainActivity extends AppCompatActivity {
     public void addYourComment() {
         addComment = new Dialog(MainActivity.this);
         addComment.setContentView(R.layout.ic_add_comment);
-        commentInput = (EditText) findViewById(R.id.comment_input);
+        final EditText commentInput = (EditText) addComment.findViewById(R.id.comment_input);
         Button mAdd = (Button) addComment.findViewById(R.id.add);
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // TODO penser à sauvegarder le commentaire
-                //comment = commentInput.getText().toString();
+                comment = commentInput.getText().toString();
                 addComment.cancel();
             }
         });
@@ -126,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
                 ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
                 if (initialY < finalY) {
-                    try {
-                        //Increase the position in the background color list / image mood list and display it.
+                    try { //Increase the position in the background color list / image mood list and display it.
                         clrPosition++;
                         imgPosition++;
                         frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
@@ -139,8 +138,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 if (initialY > finalY) {
-                    try {
-                        //Decrease the position in the background color list / image mood list and display it.
+                    try { //Decrease the position in the background color list / image mood list and display it.
                         clrPosition--;
                         imgPosition--;
                         frameLayout.setBackgroundColor(getResources().getColor(lst_colors[clrPosition]));
@@ -166,4 +164,5 @@ public class MainActivity extends AppCompatActivity {
         clrHier = mSharedPreferences.getInt(PREF_KEY_COLOR, getResources().getColor(R.color.colorAccent));
         return clrHier;
     }
+
 }
