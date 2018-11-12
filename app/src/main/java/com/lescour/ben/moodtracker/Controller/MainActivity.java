@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private Mood mMood;
     private int [] lst_images = {
-            R.mipmap.smiley_sad,
-            R.mipmap.smiley_disappointed,
-            R.mipmap.smiley_normal,
-            R.mipmap.smiley_happy,
-            R.mipmap.smiley_super_happy
+            R.drawable.smiley_sad,
+            R.drawable.smiley_disappointed,
+            R.drawable.smiley_normal,
+            R.drawable.smiley_happy,
+            R.drawable.smiley_super_happy,
     };
     int [] lst_colors = {
             R.color.faded_red,
