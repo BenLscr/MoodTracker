@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     public int clrHier;
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
+    private EditText commentInput;
     private String comment;
     private String currentPosCom;
 
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
     public void addYourComment() {
         addComment = new Dialog(MainActivity.this);
         addComment.setContentView(R.layout.ic_add_comment);
-        final EditText commentInput = (EditText) addComment.findViewById(R.id.comment_input);
+        commentInput = (EditText) addComment.findViewById(R.id.comment_input);
+        oldComment();
         Button mAdd = (Button) addComment.findViewById(R.id.add);
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,6 +108,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         addComment.show();
+    }
+
+    public void oldComment() {
+        if (comment != null) {
+            commentInput.setText(comment);
+        }
     }
 
     /**
