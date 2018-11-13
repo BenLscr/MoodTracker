@@ -5,8 +5,12 @@ package com.lescour.ben.moodtracker.Model;
  */
 public class Mood {
     private String comment;
-    private int lstPosition = 3;
+    private int lstPosition;
 
+    public Mood(String comment, int lstPosition) {
+        this.comment = comment;
+        this.lstPosition = lstPosition;
+    }
 
     public String getComment() {
         return comment;
