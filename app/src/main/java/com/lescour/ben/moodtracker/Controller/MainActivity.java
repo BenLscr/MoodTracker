@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
 import com.lescour.ben.moodtracker.Model.Mood;
 import com.lescour.ben.moodtracker.R;
 
@@ -20,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
+
+import static java.lang.System.out;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
@@ -44,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
     private EditText commentInput;
+    private String jsonMood;
 
     /**
      * Start the application with happy mood, his background color appropriate, historic button and
@@ -55,25 +59,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**if (getColor() != getResources().getColor(R.color.colorAccent)) {
-            clrHier = getColor();
-        }*/
-
         // The current date
         Calendar calendar = new GregorianCalendar();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         format.setCalendar(calendar);
         currentDay = format.format(calendar.getTime());
-        System.out.println(currentDay);
+        out.println(currentDay);
 
-        mMood = new Mood();
+        mMood = new Mood(null, 3);
 
         // Start with the happy mood.
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
         ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
         imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
         frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-        /**saveColor(clrPosition);*/
 
         ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
         ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
@@ -141,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                         mMood.setLstPosition(mMood.getLstPosition() + 1);
                         frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
                         imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
-                        /**saveColor(clrPosition);*/
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(4);
                         mMood.setLstPosition(mMood.getLstPosition());
@@ -152,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
                         mMood.setLstPosition(mMood.getLstPosition() - 1);
                         frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
                         imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
-                        /**saveColor(clrPosition);*/
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(0);
                         mMood.setLstPosition(mMood.getLstPosition());
@@ -161,6 +158,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        serializeMood();
+        out.println(jsonMood);
+    }
+
+    public void serializeMood() {
+        Gson gson = new Gson();
+        jsonMood = gson.toJson(mMood);
     }
 
     /**private void saveColor(int clrPosition) {
