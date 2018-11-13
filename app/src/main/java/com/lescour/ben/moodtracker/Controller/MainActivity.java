@@ -42,12 +42,11 @@ public class MainActivity extends AppCompatActivity {
             R.color.banana_yellow,
     };
     private String currentDay;
-    private final String PREF_KEY_COLOR = "PREF_KEY_COLOR";
-    public int clrHier;
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
     private EditText commentInput;
     private String jsonMood;
+    public String lastMood;
 
     /**
      * Start the application with happy mood, his background color appropriate, historic button and
@@ -64,9 +63,12 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         format.setCalendar(calendar);
         currentDay = format.format(calendar.getTime());
-        out.println(currentDay);
+        out.println(currentDay); // TODO Supprimer cette ligne plus tard
 
-        mMood = new Mood(null, 3);
+        getMyLastMood();
+        out.println(currentDay);// TODO Supprimer cette ligne plus tard
+        out.println(lastMood); // TODO Supprimer cette ligne plus tard
+        deserializeMyMood();
 
         // Start with the happy mood.
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
@@ -102,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO penser à sauvegarder le commentaire
                 String comment = commentInput.getText().toString();
                 mMood.setComment(comment);
                 addComment.cancel();
@@ -164,23 +165,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         serializeMood();
-        out.println(jsonMood);
+        saveMyMood(jsonMood);
     }
 
-    public void serializeMood() {
+    private void serializeMood() {
         Gson gson = new Gson();
         jsonMood = gson.toJson(mMood);
     }
 
-    /**private void saveColor(int clrPosition) {
-        mSharedPreferences = getSharedPreferences("backgroundColor", MODE_PRIVATE);
-        mSharedPreferences.edit().putInt(PREF_KEY_COLOR, clrPosition).apply();
+    private void saveMyMood(String jsonMood) {
+        mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
+        mSharedPreferences.edit().putString(currentDay, jsonMood).apply();
     }
 
-    private int getColor() {
-        mSharedPreferences = getSharedPreferences("backgroundColor", MODE_PRIVATE);
-        clrHier = mSharedPreferences.getInt(PREF_KEY_COLOR, getResources().getColor(R.color.colorAccent));
-        return clrHier;
-    }*/
+    private String getMyLastMood() {
+        mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
+        lastMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");
+        return lastMood;
+    }
+
+    private void deserializeMyMood() {
+        Gson gson = new Gson();
+        mMood = gson.fromJson(lastMood, Mood.class);
+    }
 
 }

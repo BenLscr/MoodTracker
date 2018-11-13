@@ -11,7 +11,7 @@ import com.lescour.ben.moodtracker.R;
  */
 public class Historic extends MainActivity{
 
-    @Override
+   /** @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.historic);
@@ -46,6 +46,6 @@ public class Historic extends MainActivity{
         TextView mOneWeekAgo = (TextView) findViewById(R.id.oneWeekAgo);
         mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
         mOneWeekAgo.setWidth(customWidth);
-    }
+    }*/
 
 }
