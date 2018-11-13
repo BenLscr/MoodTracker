@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         getMyLastMood();
         out.println(currentDay);// TODO Supprimer cette ligne plus tard
         out.println(lastMood); // TODO Supprimer cette ligne plus tard
-        deserializeMyMood();
+        deserializeMyLastMood(lastMood);
 
         // Start with the happy mood.
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         addComment = new Dialog(MainActivity.this);
         addComment.setContentView(R.layout.ic_add_comment);
         commentInput = (EditText) addComment.findViewById(R.id.comment_input);
-        oldComment();
+        currentComment();
         Button mAdd = (Button) addComment.findViewById(R.id.add);
         mAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,7 +112,10 @@ public class MainActivity extends AppCompatActivity {
         addComment.show();
     }
 
-    public void oldComment() {
+    /**
+     * Display the current comment if you return in the dialog box.
+     */
+    public void currentComment() {
         String comment = mMood.getComment();
         if (comment != null) {
             commentInput.setText(comment);
@@ -161,6 +164,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onTouchEvent(motionEvent);
     }
 
+    /**
+     * Save the current Mood (mood/comment) when user leave the application.
+     */
     @Override
     protected void onStop() {
         super.onStop();
@@ -168,23 +174,37 @@ public class MainActivity extends AppCompatActivity {
         saveMyMood(jsonMood);
     }
 
+    /**
+     * Serialization of data of the class Mood.
+     */
     private void serializeMood() {
         Gson gson = new Gson();
         jsonMood = gson.toJson(mMood);
     }
 
+    /**
+     * Save data in external memory.
+     * @param jsonMood The serialize data of the class Mood.
+     */
     private void saveMyMood(String jsonMood) {
         mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
         mSharedPreferences.edit().putString(currentDay, jsonMood).apply();
     }
 
+    /**
+     * Give the mood to display. If it's a new day or a the same day but you need to update .
+     * @return Serialize data.
+     */
     private String getMyLastMood() {
         mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
         lastMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");
         return lastMood;
     }
 
-    private void deserializeMyMood() {
+    /**
+     * Deserialization of lastMood and display data to the class Mood.
+     */
+    private void deserializeMyLastMood(String lastMood) {
         Gson gson = new Gson();
         mMood = gson.fromJson(lastMood, Mood.class);
     }
