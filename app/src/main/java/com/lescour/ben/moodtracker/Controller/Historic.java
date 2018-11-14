@@ -3,6 +3,7 @@ package com.lescour.ben.moodtracker.Controller;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -49,54 +50,13 @@ public class Historic extends AppCompatActivity {
        currentDay = format.format(calendar.getTime());
        out.println(currentDay); // TODO Supprimer cette ligne plus tard
 
-       // YESTERDAY
-       TextView mYesterday = (TextView) findViewById(R.id.yesterday);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mYesterday.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mYesterday.getLayoutParams().width = customWidth * (mMood.getLstPosition() +1);
-
-       // TWO DAYS AGO
-       TextView mTwoDaysAgo = (TextView) findViewById(R.id.twoDaysAgo);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mTwoDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mTwoDaysAgo.setWidth(customWidth);
-
-       // THREE DAYS AGO
-       TextView mThreeDaysAgo = (TextView) findViewById(R.id.threeDaysAgo);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mThreeDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mThreeDaysAgo.setWidth(customWidth);
-
-       // FOUR DAYS AGO
-       TextView mFourDaysAgo = (TextView) findViewById(R.id.fourDaysAgo);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mFourDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mFourDaysAgo.setWidth(customWidth);
-
-       // FIVE DAYS AGO
-       TextView mFiveDaysAgo = (TextView) findViewById(R.id.fiveDaysAgo);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mFiveDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mFiveDaysAgo.setWidth(customWidth);
-
-       // SIX DAYS AGO
-       TextView mSixDaysAgo = (TextView) findViewById(R.id.sixDaysAgo);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mSixDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mSixDaysAgo.setWidth(customWidth);
-
-       // A WEEK AGO
-       TextView mOneWeekAgo = (TextView) findViewById(R.id.oneWeekAgo);
-       decreaseTheDay();
-       getADeserializeMood(currentDay);
-       mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-       //mOneWeekAgo.setWidth(customWidth);*/
+       yesterday();
+       twoDaysAgo();
+       threeDaysAgo();
+       fourDaysAgo();
+       fiveDaysAgo();
+       sixDaysAgo();
+       oneWeekAgo();
     }
 
     private String decreaseTheDay() {
@@ -113,4 +73,59 @@ public class Historic extends AppCompatActivity {
         mMood = gson.fromJson(aMood, Mood.class);
     }
 
+    private void yesterday() {
+        TextView mYesterday = (TextView) findViewById(R.id.yesterdayText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mYesterday.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mYesterday.getLayoutParams().width = customWidth * (mMood.getLstPosition() +1);
+    }
+
+    private void twoDaysAgo() {
+        TextView mTwoDaysAgo = (TextView) findViewById(R.id.twoDaysAgoText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mTwoDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mTwoDaysAgo.setWidth(customWidth);
+    }
+
+    private void threeDaysAgo() {
+        TextView mThreeDaysAgo = (TextView) findViewById(R.id.threeDaysAgoText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mThreeDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mThreeDaysAgo.setWidth(customWidth);
+    }
+
+    private void fourDaysAgo() {
+        TextView mFourDaysAgo = (TextView) findViewById(R.id.fourDaysAgoText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mFourDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mFourDaysAgo.setWidth(customWidth);
+    }
+
+    private void fiveDaysAgo() {
+        TextView mFiveDaysAgo = (TextView) findViewById(R.id.fiveDaysAgoText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mFiveDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mFiveDaysAgo.setWidth(customWidth);
+    }
+
+    private void sixDaysAgo() {
+        TextView mSixDaysAgo = (TextView) findViewById(R.id.sixDaysAgoText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mSixDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mSixDaysAgo.setWidth(customWidth);
+    }
+
+    private void oneWeekAgo() {
+        TextView mOneWeekAgo = (TextView) findViewById(R.id.oneWeekAgoText);
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        //mOneWeekAgo.setWidth(customWidth);*/
+    }
 }
