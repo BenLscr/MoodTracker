@@ -1,51 +1,116 @@
 package com.lescour.ben.moodtracker.Controller;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.lescour.ben.moodtracker.Model.Mood;
 import com.lescour.ben.moodtracker.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+
+import static java.lang.System.out;
 
 /**
  * Created by benja on 01/11/2018.
  */
-public class Historic extends MainActivity{
+public class Historic extends AppCompatActivity {
+    private SharedPreferences mSharedPreferences;
+    private Calendar calendar;
+    private SimpleDateFormat format;
+    private Mood mMood;
+    private String currentDay;
+    private int [] lst_colors = {
+            R.color.faded_red,
+            R.color.warm_grey,
+            R.color.cornflower_blue_65,
+            R.color.light_sage,
+            R.color.banana_yellow,
+    };
 
-   /** @Override
+   @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.historic);
+       super.onCreate(savedInstanceState);
+       setContentView(R.layout.historic);
 
-        LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
-        int customWidth = mHistoricLayout.getWidth() / 5;
+       LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
+       int customWidth = mHistoricLayout.getWidth() / 5;
 
-        TextView mHier = (TextView) findViewById(R.id.hier);
-        mHier.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mHier.getLayoutParams().width = customWidth * (clrHier +1);
+       // The current date
+       calendar = new GregorianCalendar();
+       format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+       format.setCalendar(calendar);
+       currentDay = format.format(calendar.getTime());
+       out.println(currentDay); // TODO Supprimer cette ligne plus tard
 
-        TextView mAvHier = (TextView) findViewById(R.id.avHier);
-        mAvHier.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mAvHier.setWidth(customWidth);
+       // YESTERDAY
+       TextView mYesterday = (TextView) findViewById(R.id.yesterday);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mYesterday.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mYesterday.getLayoutParams().width = customWidth * (mMood.getLstPosition() +1);
 
-        TextView mThreeDaysAgo = (TextView) findViewById(R.id.threeDaysAgo);
-        mThreeDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mThreeDaysAgo.setWidth(customWidth);
+       // TWO DAYS AGO
+       TextView mTwoDaysAgo = (TextView) findViewById(R.id.twoDaysAgo);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mTwoDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mTwoDaysAgo.setWidth(customWidth);
 
-        TextView mFourDaysAgo = (TextView) findViewById(R.id.fourDaysAgo);
-        mFourDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mFourDaysAgo.setWidth(customWidth);
+       // THREE DAYS AGO
+       TextView mThreeDaysAgo = (TextView) findViewById(R.id.threeDaysAgo);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mThreeDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mThreeDaysAgo.setWidth(customWidth);
 
-        TextView mFiveDaysAgo = (TextView) findViewById(R.id.fiveDaysAgo);
-        mFiveDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mFiveDaysAgo.setWidth(customWidth);
+       // FOUR DAYS AGO
+       TextView mFourDaysAgo = (TextView) findViewById(R.id.fourDaysAgo);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mFourDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mFourDaysAgo.setWidth(customWidth);
 
-        TextView mSixDaysAgo = (TextView) findViewById(R.id.sixDaysAgo);
-        mSixDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mSixDaysAgo.setWidth(customWidth);
+       // FIVE DAYS AGO
+       TextView mFiveDaysAgo = (TextView) findViewById(R.id.fiveDaysAgo);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mFiveDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mFiveDaysAgo.setWidth(customWidth);
 
-        TextView mOneWeekAgo = (TextView) findViewById(R.id.oneWeekAgo);
-        mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_colors[clrHier]));
-        mOneWeekAgo.setWidth(customWidth);
-    }*/
+       // SIX DAYS AGO
+       TextView mSixDaysAgo = (TextView) findViewById(R.id.sixDaysAgo);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mSixDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mSixDaysAgo.setWidth(customWidth);
+
+       // A WEEK AGO
+       TextView mOneWeekAgo = (TextView) findViewById(R.id.oneWeekAgo);
+       decreaseTheDay();
+       getADeserializeMood(currentDay);
+       mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+       //mOneWeekAgo.setWidth(customWidth);*/
+    }
+
+    private String decreaseTheDay() {
+        calendar.add(Calendar.DAY_OF_MONTH, -1);
+        currentDay = format.format(calendar.getTime());
+        out.println(currentDay); // TODO Supprimer cette ligne plus tard
+        return currentDay;
+    }
+
+    private void getADeserializeMood(String currentDay) {
+        mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
+        String aMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");
+        Gson gson = new Gson();
+        mMood = gson.fromJson(aMood, Mood.class);
+    }
 
 }
