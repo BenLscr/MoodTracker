@@ -14,7 +14,7 @@
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Il y a une semaine"/>
+        android:text="@string/one_week_ago"/>
 
     <TextView
         android:id="@+id/sixDaysAgo"
@@ -24,7 +24,7 @@
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Il y a six jours"/>
+        android:text="@string/six_days_ago"/>
 
     <TextView
         android:id="@+id/fiveDaysAgo"
@@ -34,7 +34,7 @@
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Il y a cinq jours"/>
+        android:text="@string/five_days_ago"/>
 
     <TextView
         android:id="@+id/fourDaysAgo"
@@ -44,7 +44,7 @@
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Il y a quatre jours"/>
+        android:text="@string/four_days_ago"/>
 
     <TextView
         android:id="@+id/threeDaysAgo"
@@ -54,26 +54,26 @@
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Il y a trois jours"/>
+        android:text="@string/three_days_ago"/>
 
     <TextView
-        android:id="@+id/avHier"
+        android:id="@+id/twoDaysAgo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Avant-hier"/>
+        android:text="@string/two_days_ago"/>
 
     <TextView
-        android:id="@+id/hier"
+        android:id="@+id/yesterday"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:textStyle="bold"
-        android:text="Hier"/>
+        android:text="@string/yesterday"/>
 
 </LinearLayout>
