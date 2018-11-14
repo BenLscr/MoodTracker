@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.smiley_happy,
             R.drawable.smiley_super_happy,
     };
-    int [] lst_colors = {
+    private int [] lst_colors = {
             R.color.faded_red,
             R.color.warm_grey,
             R.color.cornflower_blue_65,
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Dialog addComment;
     private EditText commentInput;
     private String jsonMood;
-    public String lastMood;
+    private String lastMood;
 
     /**
      * Start the application with happy mood, his background color appropriate, historic button and
