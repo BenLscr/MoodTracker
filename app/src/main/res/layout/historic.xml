@@ -6,74 +6,179 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/oneWeekAgo"
+    <FrameLayout
+        android:id="@+id/oneWeekAgoFrame"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/one_week_ago"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/sixDaysAgo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/six_days_ago"/>
+        <TextView
+            android:id="@+id/oneWeekAgoText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/one_week_ago"/>
 
-    <TextView
-        android:id="@+id/fiveDaysAgo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/five_days_ago"/>
+        <ImageButton
+            android:id="@+id/oneWeekAgoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
 
-    <TextView
-        android:id="@+id/fourDaysAgo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/four_days_ago"/>
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/threeDaysAgo"
+    <FrameLayout
+        android:id="@+id/sixDaysAgoFrame"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/three_days_ago"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/twoDaysAgo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/two_days_ago"/>
+        <TextView
+            android:id="@+id/sixDaysAgoText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/six_days_ago"/>
 
-    <TextView
-        android:id="@+id/yesterday"
+        <ImageButton
+            android:id="@+id/sixDaysAgoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fiveDaysAgoFrame"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingTop="5dp"
-        android:paddingStart="5dp"
-        android:textStyle="bold"
-        android:text="@string/yesterday"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/fiveDaysAgoText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/five_days_ago"/>
+
+        <ImageButton
+            android:id="@+id/fiveDaysAgoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fourDaysAgoFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/fourDaysAgoText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/four_days_ago"/>
+
+        <ImageButton
+            android:id="@+id/fourDaysAgoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/threeDaysAgoFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/threeDaysAgoText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/three_days_ago"/>
+
+        <ImageButton
+            android:id="@+id/threeDaysAgoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/twoDaysAgoFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/twoDaysAgoText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/two_days_ago"/>
+
+        <ImageButton
+            android:id="@+id/twoDaysAgoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/yesterdayFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/yesterdayText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp"
+            android:paddingStart="5dp"
+            android:textStyle="bold"
+            android:text="@string/yesterday"/>
+
+        <ImageButton
+            android:id="@+id/yesterdayButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/ic_comment_black_48px" />
+
+    </FrameLayout>
 
 </LinearLayout>
