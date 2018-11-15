@@ -20,8 +20,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import static java.lang.System.out;
-
 /**
  * Created by benja on 01/11/2018.
  */
@@ -49,7 +47,6 @@ public class Historic extends AppCompatActivity {
        format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
        format.setCalendar(calendar);
        currentDay = format.format(calendar.getTime());
-       out.println(currentDay); // TODO Supprimer cette ligne plus tard
 
 
        LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
@@ -70,7 +67,6 @@ public class Historic extends AppCompatActivity {
     private String decreaseTheDay() {
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         currentDay = format.format(calendar.getTime());
-        out.println(currentDay); // TODO Supprimer cette ligne plus tard
         return currentDay;
     }
 
@@ -89,7 +85,6 @@ public class Historic extends AppCompatActivity {
         getADeserializeMood(currentDay);
         mYesterday.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
         if (mMood.getComment() != null ) {
-            out.println(mMood.getComment()); // TODO EFFACE CETTE LIGNE
             final String comment = mMood.getComment();
             bYesterday.setVisibility(View.VISIBLE);
             bYesterday.setOnClickListener(new View.OnClickListener() {

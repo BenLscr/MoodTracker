@@ -23,8 +23,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 
-import static java.lang.System.out;
-
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private Mood mMood;
@@ -64,11 +62,8 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         format.setCalendar(calendar);
         currentDay = format.format(calendar.getTime());
-        out.println(currentDay); // TODO Supprimer cette ligne plus tard
 
         getMyLastMood();
-        out.println(currentDay);// TODO Supprimer cette ligne plus tard
-        out.println(lastMood); // TODO Supprimer cette ligne plus tard
         deserializeMyLastMood(lastMood);
 
         // Start with the happy mood.
@@ -96,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * The dialog box to add a comment
+     */
     public void addYourComment() {
         addComment = new Dialog(MainActivity.this);
         addComment.setContentView(R.layout.ic_add_comment);
