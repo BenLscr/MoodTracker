@@ -3,6 +3,7 @@ package com.lescour.ben.moodtracker.Controller;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -100,8 +101,17 @@ public class MainActivity extends AppCompatActivity {
         addComment.setContentView(R.layout.ic_add_comment);
         commentInput = (EditText) addComment.findViewById(R.id.comment_input);
         currentComment();
-        Button mAdd = (Button) addComment.findViewById(R.id.add);
-        mAdd.setOnClickListener(new View.OnClickListener() {
+        Button mCancel = (Button) addComment.findViewById(R.id.cancel);
+        mCancel.setTextColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addComment.cancel();
+            }
+        });
+        Button mValidate = (Button) addComment.findViewById(R.id.validate);
+        mValidate.setTextColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String comment = commentInput.getText().toString();
@@ -109,6 +119,8 @@ public class MainActivity extends AppCompatActivity {
                 addComment.cancel();
             }
         });
+        commentInput.getBackground().mutate().setColorFilter(getResources()
+                .getColor(lst_colors[mMood.getLstPosition()]), PorterDuff.Mode.SRC_ATOP);
         addComment.show();
     }
 
