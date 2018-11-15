@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/liteGrey">
 
     <FrameLayout
         android:id="@+id/oneWeekAgoFrame"
@@ -18,6 +19,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/one_week_ago"/>
 
@@ -44,6 +46,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/six_days_ago"/>
 
@@ -70,6 +73,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/five_days_ago"/>
 
@@ -96,6 +100,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/four_days_ago"/>
 
@@ -122,6 +127,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/three_days_ago"/>
 
@@ -148,6 +154,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/two_days_ago"/>
 
@@ -174,6 +181,7 @@
             android:layout_height="match_parent"
             android:paddingTop="5dp"
             android:paddingStart="5dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:text="@string/yesterday"/>
 
