@@ -42,7 +42,7 @@ public class HistoricActivity extends AppCompatActivity {
    @Override
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
-       setContentView(R.layout.historic);
+       setContentView(R.layout.activity_historic);
 
        // The current date
        calendar = new GregorianCalendar();
