@@ -16,9 +16,17 @@ import com.lescour.ben.moodtracker.Model.Mood;
 import com.lescour.ben.moodtracker.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
+
+import static com.lescour.ben.moodtracker.Enum.Mood.DISAPPOINTED;
+import static com.lescour.ben.moodtracker.Enum.Mood.HAPPY;
+import static com.lescour.ben.moodtracker.Enum.Mood.NORMAL;
+import static com.lescour.ben.moodtracker.Enum.Mood.SAD;
+import static com.lescour.ben.moodtracker.Enum.Mood.SUPER_HAPPY;
 
 /**
  * Created by benja on 01/11/2018.
@@ -29,13 +37,7 @@ public class Historic extends AppCompatActivity {
     private Mood mMood;
     private String currentDay;
     private int customWidth;
-    private int [] lst_colors = {
-            R.color.faded_red,
-            R.color.warm_grey,
-            R.color.cornflower_blue_65,
-            R.color.light_sage,
-            R.color.banana_yellow,
-    };
+    private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD, DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +85,7 @@ public class Historic extends AppCompatActivity {
         bYesterday.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mYesterday.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mYesterday.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bYesterday.setVisibility(View.VISIBLE);
@@ -105,7 +107,7 @@ public class Historic extends AppCompatActivity {
         bTwoDaysAgo.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mTwoDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mTwoDaysAgo.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bTwoDaysAgo.setVisibility(View.VISIBLE);
@@ -127,7 +129,7 @@ public class Historic extends AppCompatActivity {
         bThreeDaysAgo.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mThreeDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mThreeDaysAgo.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bThreeDaysAgo.setVisibility(View.VISIBLE);
@@ -149,7 +151,7 @@ public class Historic extends AppCompatActivity {
         bFourDaysAgo.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mFourDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mFourDaysAgo.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bFourDaysAgo.setVisibility(View.VISIBLE);
@@ -171,7 +173,7 @@ public class Historic extends AppCompatActivity {
         bFiveDaysAgo.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mFiveDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mFiveDaysAgo.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bFiveDaysAgo.setVisibility(View.VISIBLE);
@@ -193,7 +195,7 @@ public class Historic extends AppCompatActivity {
         bSixDaysAgo.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mSixDaysAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mSixDaysAgo.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bSixDaysAgo.setVisibility(View.VISIBLE);
@@ -215,7 +217,7 @@ public class Historic extends AppCompatActivity {
         bOneWeekAgo.setVisibility(View.GONE);
         decreaseTheDay();
         getADeserializeMood(currentDay);
-        mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mOneWeekAgo.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         if (mMood.getComment() != null ) {
             final String comment = mMood.getComment();
             bOneWeekAgo.setVisibility(View.VISIBLE);

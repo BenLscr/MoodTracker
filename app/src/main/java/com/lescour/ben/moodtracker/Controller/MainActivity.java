@@ -19,28 +19,23 @@ import com.lescour.ben.moodtracker.Model.Mood;
 import com.lescour.ben.moodtracker.R;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Locale;
+
+import static com.lescour.ben.moodtracker.Enum.Mood.DISAPPOINTED;
+import static com.lescour.ben.moodtracker.Enum.Mood.HAPPY;
+import static com.lescour.ben.moodtracker.Enum.Mood.NORMAL;
+import static com.lescour.ben.moodtracker.Enum.Mood.SAD;
+import static com.lescour.ben.moodtracker.Enum.Mood.SUPER_HAPPY;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private Mood mMood;
-    private int [] lst_images = {
-            R.drawable.smiley_sad,
-            R.drawable.smiley_disappointed,
-            R.drawable.smiley_normal,
-            R.drawable.smiley_happy,
-            R.drawable.smiley_super_happy,
-    };
-    private int [] lst_colors = {
-            R.color.faded_red,
-            R.color.warm_grey,
-            R.color.cornflower_blue_65,
-            R.color.light_sage,
-            R.color.banana_yellow,
-    };
     private String currentDay;
+    private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD, DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
     private EditText commentInput;
@@ -50,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Start the application with happy mood, his background color appropriate, historic button and
      * a button to add comment.
+     *
      * @param savedInstanceState
      */
     @Override
@@ -69,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
         // Start with the happy mood.
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
         ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
-        imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
-        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
+        frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
 
         ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
         ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
@@ -100,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         commentInput = (EditText) addComment.findViewById(R.id.comment_input);
         currentComment();
         Button mCancel = (Button) addComment.findViewById(R.id.cancel);
-        mCancel.setTextColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mCancel.setTextColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         mCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Button mValidate = (Button) addComment.findViewById(R.id.validate);
-        mValidate.setTextColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
+        mValidate.setTextColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         mValidate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,8 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 addComment.cancel();
             }
         });
-        commentInput.getBackground().mutate().setColorFilter(getResources()
-                .getColor(lst_colors[mMood.getLstPosition()]), PorterDuff.Mode.SRC_ATOP);
+        commentInput.getBackground().mutate().setColorFilter(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()), PorterDuff.Mode.SRC_ATOP);
         addComment.show();
     }
 
@@ -134,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Detect the swipe to change the mood and his background color.
+     *
      * @param motionEvent
      * @return
      */
@@ -152,8 +148,8 @@ public class MainActivity extends AppCompatActivity {
                 if (initialY < finalY) {
                     try { //Increase the position in the background color list / image mood list and display it.
                         mMood.setLstPosition(mMood.getLstPosition() + 1);
-                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-                        imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
+                        frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
+                        imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(4);
                         mMood.setLstPosition(mMood.getLstPosition());
@@ -162,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
                 if (initialY > finalY) {
                     try { //Decrease the position in the background color list / image mood list and display it.
                         mMood.setLstPosition(mMood.getLstPosition() - 1);
-                        frameLayout.setBackgroundColor(getResources().getColor(lst_colors[mMood.getLstPosition()]));
-                        imgSwipe.setImageResource(lst_images[mMood.getLstPosition()]);
+                        frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
+                        imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(0);
                         mMood.setLstPosition(mMood.getLstPosition());
@@ -194,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Save data in external memory.
+     *
      * @param jsonMood The serialize data of the class Mood.
      */
     private void saveMyMood(String jsonMood) {
@@ -203,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Give the mood to display. If it's a new day or a the same day but you need to update .
+     *
      * @return Serialize data.
      */
     private String getMyLastMood() {
