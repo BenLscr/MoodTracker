@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         icHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent historic = new Intent(MainActivity.this, Historic.class);
+                Intent historic = new Intent(MainActivity.this, HistoricActivity.class);
                 startActivity(historic);
             }
         });

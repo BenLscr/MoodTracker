@@ -31,7 +31,7 @@ import static com.lescour.ben.moodtracker.Enum.Mood.SUPER_HAPPY;
 /**
  * Created by benja on 01/11/2018.
  */
-public class Historic extends AppCompatActivity {
+public class HistoricActivity extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat format;
     private Mood mMood;
@@ -92,7 +92,7 @@ public class Historic extends AppCompatActivity {
             bYesterday.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -114,7 +114,7 @@ public class Historic extends AppCompatActivity {
             bTwoDaysAgo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -136,7 +136,7 @@ public class Historic extends AppCompatActivity {
             bThreeDaysAgo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -158,7 +158,7 @@ public class Historic extends AppCompatActivity {
             bFourDaysAgo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -180,7 +180,7 @@ public class Historic extends AppCompatActivity {
             bFiveDaysAgo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -202,7 +202,7 @@ public class Historic extends AppCompatActivity {
             bSixDaysAgo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -224,7 +224,7 @@ public class Historic extends AppCompatActivity {
             bOneWeekAgo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(Historic.this,comment,
+                    Toast.makeText(HistoricActivity.this,comment,
                             Toast.LENGTH_SHORT).show();
                 }
             });
