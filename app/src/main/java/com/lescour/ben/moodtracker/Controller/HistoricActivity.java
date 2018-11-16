@@ -22,6 +22,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
+import static com.lescour.ben.moodtracker.Enum.Day.FIVEDAYSAGO;
+import static com.lescour.ben.moodtracker.Enum.Day.FOURDAYSAGO;
+import static com.lescour.ben.moodtracker.Enum.Day.ONEWEEKAGO;
+import static com.lescour.ben.moodtracker.Enum.Day.SIXDAYSAGO;
+import static com.lescour.ben.moodtracker.Enum.Day.THREEDAYSAGO;
+import static com.lescour.ben.moodtracker.Enum.Day.TWODAYSAGO;
+import static com.lescour.ben.moodtracker.Enum.Day.YESTERDAY;
 import static com.lescour.ben.moodtracker.Enum.Mood.DISAPPOINTED;
 import static com.lescour.ben.moodtracker.Enum.Mood.HAPPY;
 import static com.lescour.ben.moodtracker.Enum.Mood.NORMAL;
@@ -37,7 +44,11 @@ public class HistoricActivity extends AppCompatActivity {
     private Mood mMood;
     private String currentDay;
     private int customWidth;
-    private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD, DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
+    private int i = 0;
+    private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD,
+            DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
+    private List<com.lescour.ben.moodtracker.Enum.Day> lst_day = Arrays.asList(YESTERDAY,
+            TWODAYSAGO, THREEDAYSAGO, FOURDAYSAGO, FIVEDAYSAGO, SIXDAYSAGO, ONEWEEKAGO);
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,13 +68,40 @@ public class HistoricActivity extends AppCompatActivity {
        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
        customWidth = displaymetrics.widthPixels / 5;
 
-       yesterday();
+       /**yesterday();
        twoDaysAgo();
        threeDaysAgo();
        fourDaysAgo();
        fiveDaysAgo();
        sixDaysAgo();
-       oneWeekAgo();
+       oneWeekAgo();*/
+
+       do {
+           displayLine();
+           i++;
+       } while (i != 7);
+    }
+
+    private void displayLine() {
+        decreaseTheDay();
+        getADeserializeMood(currentDay);
+        TextView tDay = (TextView) findViewById(lst_day.get(i).getText());
+        ImageButton bDay = (ImageButton) findViewById(lst_day.get(i).getButton());
+        bDay.setVisibility(View.GONE);
+        tDay.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
+        if (mMood.getComment() != null ) {
+            final String comment = mMood.getComment();
+            bDay.setVisibility(View.VISIBLE);
+            bDay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(HistoricActivity.this,comment,
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        FrameLayout fDay = (FrameLayout) findViewById(lst_day.get(i).getFrame());
+        fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() +1);
     }
 
     private String decreaseTheDay() {
