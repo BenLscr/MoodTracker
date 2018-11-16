@@ -96,12 +96,22 @@ public class HistoricActivity extends AppCompatActivity {
         fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() +1);
     }
 
+    /**
+     * at every use of this method, the date is decrease by 1.
+     * @return the current day in the calendar.
+     */
     private String decreaseTheDay() {
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         currentDay = format.format(calendar.getTime());
         return currentDay;
     }
 
+    /**
+     * Recover the save Mood who corresponds at the current day in the calendar.
+     * If no save is found, set the basic Mood.
+     * Deserialize the save Mood and and display his data to the class Mood.
+     * @param currentDay the current day in the calendar. He's use like a key.
+     */
     private void getADeserializeMood(String currentDay) {
         SharedPreferences mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
         String aMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");

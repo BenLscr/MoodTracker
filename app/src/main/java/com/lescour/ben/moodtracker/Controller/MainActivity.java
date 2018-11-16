@@ -43,9 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private String lastMood;
 
     /**
-     * Start the application with happy mood, his background color appropriate, historic button and
+     * Start the application with happy mood, his appropriate background color , historic button and
      * a button to add comment.
-     *
      * @param savedInstanceState
      */
     @Override
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * The dialog box to add a comment
+     * The dialog box to add a comment.
      */
     public void addYourComment() {
         addComment = new Dialog(MainActivity.this);
@@ -129,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Detect the swipe to change the mood and his background color.
-     *
      * @param motionEvent
      * @return
      */
@@ -171,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Save the current Mood (mood/comment) when user leave the application.
+     * Save the current Mood (mood/comment) serialized when user leave the application.
      */
     @Override
     protected void onStop() {
@@ -181,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Serialization of data of the class Mood.
+     * Serialization of current data of the class Mood.
      */
     private void serializeMood() {
         Gson gson = new Gson();
@@ -190,7 +188,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Save data in external memory.
-     *
      * @param jsonMood The serialize data of the class Mood.
      */
     private void saveMyMood(String jsonMood) {
@@ -199,8 +196,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Give the mood to display. If it's a new day or a the same day but you need to update .
-     *
+     * Recover the mood to display from external memory. If it's a new day, display the basic mood.
+     * If it's the same day, display the current mood and you can update it.
      * @return Serialize data.
      */
     private String getMyLastMood() {
@@ -210,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Deserialization of lastMood and display data to the class Mood.
+     * Deserialization of lastMood and display his data to the class Mood.
      */
     private void deserializeMyLastMood(String lastMood) {
         Gson gson = new Gson();
