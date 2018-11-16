@@ -3,15 +3,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dialog_edittext_hint">Write your comment</string>
-    <string name="yesterday">Yesterday</string>
-    <string name="two_days_ago">Two days ago</string>
-    <string name="three_days_ago">Three days ago</string>
-    <string name="four_days_ago">Four days ago</string>
-    <string name="five_days_ago">Five days ago</string>
-    <string name="six_days_ago">Six days ago</string>
-    <string name="one_week_ago">One week ago</string>
-    <string name="validate_button">validate</string>
-    <string name="cancel">cancel</string>
-    <string name="comment">Comment</string>
+    <string name="dialog_edittext_hint">Ecris ton commentaire</string>
+    <string name="yesterday">Hier</string>
+    <string name="two_days_ago">Avant-hier</string>
+    <string name="three_days_ago">Il y a trois jours</string>
+    <string name="four_days_ago">Il y a quatre jours</string>
+    <string name="five_days_ago">Il y a cinq jours</string>
+    <string name="six_days_ago">Il y a six jours</string>
+    <string name="one_week_ago">Il y a une semaine</string>
+    <string name="validate_button">Valider</string>
+    <string name="cancel">Annuler</string>
+    <string name="comment">Commentaire</string>
 </resources>
