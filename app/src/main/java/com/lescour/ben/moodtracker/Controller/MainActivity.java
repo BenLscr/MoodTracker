@@ -55,8 +55,6 @@ public class MainActivity extends AppCompatActivity {
         getMyLastMood();
         deserializeMyLastMood(lastMood);
         displayCurrentMood();
-        // Start with the happy mood.
-
         ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
         ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
 
@@ -66,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 addYourComment();
             }
         });
-
         icHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,12 +205,10 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Recover the mood to display from external memory. If it's a new day, display the basic mood.
      * If you reopen the application in the same day, set the current mood..
-     * @return Serialize data.
      */
-    private String getMyLastMood() {
+    private void getMyLastMood() {
         mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
         lastMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");
-        return lastMood;
     }
 
     /**
