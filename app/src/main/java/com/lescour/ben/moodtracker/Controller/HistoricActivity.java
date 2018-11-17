@@ -54,7 +54,6 @@ public class HistoricActivity extends AppCompatActivity {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_historic);
        theCalendar();
-       LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
        displayMetrics();
        displayLine();
     }
@@ -73,6 +72,7 @@ public class HistoricActivity extends AppCompatActivity {
      * Recover the width of the screen and divide it by 5.
      */
     private void displayMetrics() {
+        LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         customWidth = displaymetrics.widthPixels / 5;
