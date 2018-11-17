@@ -60,14 +60,19 @@ public class HistoricActivity extends AppCompatActivity {
        format.setCalendar(calendar);
        currentDay = format.format(calendar.getTime());
 
-
        LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
 
-       DisplayMetrics displaymetrics = new DisplayMetrics();
-       getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-       customWidth = displaymetrics.widthPixels / 5;
-
+       displayMetrics();
        displayLine();
+    }
+
+    /**
+     * Recover the width of the screen and divide it by 5.
+     */
+    private void displayMetrics() {
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        customWidth = displaymetrics.widthPixels / 5;
     }
 
     /**
