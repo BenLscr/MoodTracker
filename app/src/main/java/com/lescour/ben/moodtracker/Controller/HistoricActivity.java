@@ -53,18 +53,21 @@ public class HistoricActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_historic);
-
-       // The current date
-       calendar = new GregorianCalendar();
-       format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-       format.setCalendar(calendar);
-       currentDay = format.format(calendar.getTime());
-
+       theCalendar();
        LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
-
        displayMetrics();
        displayLine();
     }
+
+    /**
+     * Build a calendar and display it like year-month-day.
+     */
+    private void theCalendar() {
+        calendar = new GregorianCalendar();
+        format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        format.setCalendar(calendar);
+        currentDay = format.format(calendar.getTime());
+           }
 
     /**
      * Recover the width of the screen and divide it by 5.
