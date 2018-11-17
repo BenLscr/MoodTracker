@@ -54,12 +54,8 @@ public class MainActivity extends AppCompatActivity {
         theCalendar();
         getMyLastMood();
         deserializeMyLastMood(lastMood);
-
+        displayCurrentMood();
         // Start with the happy mood.
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-        ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
-        imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
-        frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
 
         ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
         ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
@@ -88,6 +84,16 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         format.setCalendar(calendar);
         currentDay = format.format(calendar.getTime());
+    }
+
+    /**
+     * Display the current image and color.
+     */
+    private void displayCurrentMood() {
+        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
+        ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
+        imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
+        frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
     }
 
     /**
@@ -201,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Recover the mood to display from external memory. If it's a new day, display the basic mood.
-     * If it's the same day, display the current mood and you can update it.
+     * If you reopen the application in the same day, set the current mood..
      * @return Serialize data.
      */
     private String getMyLastMood() {
