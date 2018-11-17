@@ -44,7 +44,6 @@ public class HistoricActivity extends AppCompatActivity {
     private Mood mMood;
     private String currentDay;
     private int customWidth;
-    private int i = 0;
     private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD,
             DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
     private List<com.lescour.ben.moodtracker.Enum.Day> lst_day = Arrays.asList(YESTERDAY,
@@ -68,32 +67,31 @@ public class HistoricActivity extends AppCompatActivity {
        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
        customWidth = displaymetrics.widthPixels / 5;
 
-       do {
-           displayLine();
-           i++;
-       } while (i != 7);
+       displayLine();
     }
 
     private void displayLine() {
-        decreaseTheDay();
-        getADeserializeMood(currentDay);
-        TextView tDay = (TextView) findViewById(lst_day.get(i).getText());
-        ImageButton bDay = (ImageButton) findViewById(lst_day.get(i).getButton());
-        bDay.setVisibility(View.GONE);
-        tDay.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
-        if (mMood.getComment() != null ) {
-            final String comment = mMood.getComment();
-            bDay.setVisibility(View.VISIBLE);
-            bDay.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(HistoricActivity.this,comment,
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
+        for (int i = 0; i < lst_day.size(); i++) {
+            decreaseTheDay();
+            getADeserializeMood(currentDay);
+            TextView tDay = (TextView) findViewById(lst_day.get(i).getText());
+            ImageButton bDay = (ImageButton) findViewById(lst_day.get(i).getButton());
+            bDay.setVisibility(View.GONE);
+            tDay.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
+            if (mMood.getComment() != null) {
+                final String comment = mMood.getComment();
+                bDay.setVisibility(View.VISIBLE);
+                bDay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(HistoricActivity.this, comment,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            FrameLayout fDay = (FrameLayout) findViewById(lst_day.get(i).getFrame());
+            fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() + 1);
         }
-        FrameLayout fDay = (FrameLayout) findViewById(lst_day.get(i).getFrame());
-        fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() +1);
     }
 
     /**
