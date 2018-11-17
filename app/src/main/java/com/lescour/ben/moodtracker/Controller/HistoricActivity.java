@@ -70,6 +70,9 @@ public class HistoricActivity extends AppCompatActivity {
        displayLine();
     }
 
+    /**
+     * Display every line for the last seven days
+     */
     private void displayLine() {
         for (int i = 0; i < lst_day.size(); i++) {
             decreaseTheDay();
