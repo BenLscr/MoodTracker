@@ -51,13 +51,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // The current date
-        Calendar calendar = new GregorianCalendar();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-        format.setCalendar(calendar);
-        currentDay = format.format(calendar.getTime());
-
+        theCalendar();
         getMyLastMood();
         deserializeMyLastMood(lastMood);
 
@@ -84,6 +78,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(historic);
             }
         });
+    }
+
+    /**
+     * Build a calendar and display it like year-month-day.
+     */
+    private void theCalendar() {
+        Calendar calendar = new GregorianCalendar();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        format.setCalendar(calendar);
+        currentDay = format.format(calendar.getTime());
     }
 
     /**
