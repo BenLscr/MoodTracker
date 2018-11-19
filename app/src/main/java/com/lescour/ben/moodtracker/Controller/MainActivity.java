@@ -84,6 +84,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     * Recover the mood to display from external memory. If it's a new day, display the basic mood.
+     * If you reopen the application in the same day, set the current mood..
+     */
+    private void getMyLastMood() {
+        mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
+        lastMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");
+    }
+
+    /**
+     * Deserialization of lastMood and display his data to the class Mood.
+     */
+    private void deserializeMyLastMood(String lastMood) {
+        Gson gson = new Gson();
+        mMood = gson.fromJson(lastMood, Mood.class);
+    }
+
+    /**
      * Display the current image and color.
      */
     private void displayCurrentMood() {
@@ -198,23 +215,6 @@ public class MainActivity extends AppCompatActivity {
     private void saveMyMood(String jsonMood) {
         mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
         mSharedPreferences.edit().putString(currentDay, jsonMood).apply();
-    }
-
-    /**
-     * Recover the mood to display from external memory. If it's a new day, display the basic mood.
-     * If you reopen the application in the same day, set the current mood..
-     */
-    private void getMyLastMood() {
-        mSharedPreferences = getSharedPreferences("myMood", MODE_PRIVATE);
-        lastMood = mSharedPreferences.getString(currentDay, "{'lstPosition':3}");
-    }
-
-    /**
-     * Deserialization of lastMood and display his data to the class Mood.
-     */
-    private void deserializeMyLastMood(String lastMood) {
-        Gson gson = new Gson();
-        mMood = gson.fromJson(lastMood, Mood.class);
     }
 
 }
