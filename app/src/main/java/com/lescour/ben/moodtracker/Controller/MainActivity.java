@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lescour.ben.moodtracker.Model.Mood;
@@ -116,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
     public void addYourComment() {
         addComment = new Dialog(MainActivity.this);
         addComment.setContentView(R.layout.ic_add_comment);
+        TextView comment = (TextView) addComment.findViewById(R.id.comment);
+        comment.setTextColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         commentInput = (EditText) addComment.findViewById(R.id.comment_input);
         currentComment();
         Button mCancel = (Button) addComment.findViewById(R.id.cancel);
