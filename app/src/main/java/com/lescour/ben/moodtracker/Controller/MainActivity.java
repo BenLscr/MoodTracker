@@ -156,8 +156,7 @@ public class MainActivity extends AppCompatActivity {
                         frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
                         imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        mMood.setLstPosition(4);
-                        mMood.setLstPosition(mMood.getLstPosition());
+                        mMood.setLstPosition(lst_mood.size()-1);
                     }
                 }
                 if (initialY > finalY) {
@@ -167,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
                         imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(0);
-                        mMood.setLstPosition(mMood.getLstPosition());
                     }
                 }
                 break;
