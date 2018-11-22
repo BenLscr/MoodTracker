@@ -69,13 +69,13 @@ public class HistoricActivity extends AppCompatActivity {
            }
 
     /**
-     * Recover the width of the screen and divide it by 5.
+     * Recover the width of the screen and divide it by number of mood in my lst_mood.
      */
     private void displayMetrics() {
         LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        customWidth = displaymetrics.widthPixels / 5;
+        customWidth = displaymetrics.widthPixels / lst_mood.size();
     }
 
     /**
