@@ -85,10 +85,11 @@ public class HistoricActivity extends AppCompatActivity {
         for (int i = 0; i < lst_day.size(); i++) {
             decreaseTheDay();
             getADeserializeMood(currentDay);
-            TextView tDay = (TextView) findViewById(lst_day.get(i).getText());
+            FrameLayout fDay = (FrameLayout) findViewById(lst_day.get(i).getFrame());
+            fDay.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
+            fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() + 1);
             ImageButton bDay = (ImageButton) findViewById(lst_day.get(i).getButton());
             bDay.setVisibility(View.GONE);
-            tDay.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
             if (mMood.getComment() != null) {
                 final String comment = mMood.getComment();
                 bDay.setVisibility(View.VISIBLE);
@@ -100,8 +101,6 @@ public class HistoricActivity extends AppCompatActivity {
                     }
                 });
             }
-            FrameLayout fDay = (FrameLayout) findViewById(lst_day.get(i).getFrame());
-            fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() + 1);
         }
     }
 
