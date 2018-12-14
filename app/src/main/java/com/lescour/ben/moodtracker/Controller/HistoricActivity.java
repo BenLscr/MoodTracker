@@ -7,8 +7,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -72,7 +70,6 @@ public class HistoricActivity extends AppCompatActivity {
      * Recover the width of the screen and divide it by number of mood in my lst_mood.
      */
     private void displayMetrics() {
-        LinearLayout mHistoricLayout = (LinearLayout) findViewById(R.id.historicLayout);
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         customWidth = displaymetrics.widthPixels / lst_mood.size();
@@ -85,10 +82,10 @@ public class HistoricActivity extends AppCompatActivity {
         for (int i = 0; i < lst_day.size(); i++) {
             decreaseTheDay();
             getADeserializeMood(currentDay);
-            FrameLayout fDay = (FrameLayout) findViewById(lst_day.get(i).getFrame());
+            FrameLayout fDay = findViewById(lst_day.get(i).getFrame());
             fDay.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
             fDay.getLayoutParams().width = customWidth * (mMood.getLstPosition() + 1);
-            ImageButton bDay = (ImageButton) findViewById(lst_day.get(i).getButton());
+            ImageButton bDay = findViewById(lst_day.get(i).getButton());
             bDay.setVisibility(View.GONE);
             if (mMood.getComment() != null) {
                 final String comment = mMood.getComment();
@@ -106,12 +103,10 @@ public class HistoricActivity extends AppCompatActivity {
 
     /**
      * at every use of this method, the date is decrease by 1.
-     * @return the current day in the calendar.
      */
-    private String decreaseTheDay() {
+    private void decreaseTheDay() {
         calendar.add(Calendar.DAY_OF_MONTH, -1);
         currentDay = format.format(calendar.getTime());
-        return currentDay;
     }
 
     /**

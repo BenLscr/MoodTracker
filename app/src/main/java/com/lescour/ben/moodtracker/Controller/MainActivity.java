@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Start the application with happy mood, his appropriate background color , historic button and
      * a button to add comment.
-     * @param savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         getMyLastMood();
         deserializeMyLastMood(lastMood);
         displayCurrentMood();
-        ImageButton icNoteAdd = (ImageButton) findViewById(R.id.icNoteAdd);
-        ImageButton icHistory = (ImageButton) findViewById(R.id.icHistory);
+        ImageButton icNoteAdd = findViewById(R.id.icNoteAdd);
+        ImageButton icHistory = findViewById(R.id.icHistory);
 
         icNoteAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
      * Display the current image and color.
      */
     private void displayCurrentMood() {
-        FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-        ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
+        FrameLayout frameLayout = findViewById(R.id.frame_layout);
+        ImageView imgSwipe = findViewById(R.id.imgSwipe);
         imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
         frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
     }
@@ -117,11 +116,11 @@ public class MainActivity extends AppCompatActivity {
     public void addYourComment() {
         addComment = new Dialog(MainActivity.this);
         addComment.setContentView(R.layout.ic_add_comment);
-        TextView comment = (TextView) addComment.findViewById(R.id.comment);
+        TextView comment = addComment.findViewById(R.id.comment);
         comment.setTextColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
-        commentInput = (EditText) addComment.findViewById(R.id.comment_input);
+        commentInput = addComment.findViewById(R.id.comment_input);
         currentComment();
-        Button mCancel = (Button) addComment.findViewById(R.id.cancel);
+        Button mCancel = addComment.findViewById(R.id.cancel);
         mCancel.setTextColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         mCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                 addComment.cancel();
             }
         });
-        Button mValidate = (Button) addComment.findViewById(R.id.validate);
+        Button mValidate = addComment.findViewById(R.id.validate);
         mValidate.setTextColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
         mValidate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,8 +154,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Detect the swipe to change the mood and his background color.
-     * @param motionEvent
-     * @return
      */
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
@@ -168,8 +165,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case (MotionEvent.ACTION_UP):
                 float finalY = motionEvent.getY();
-                FrameLayout frameLayout = (FrameLayout) findViewById(R.id.frame_layout);
-                ImageView imgSwipe = (ImageView) findViewById(R.id.imgSwipe);
+                FrameLayout frameLayout = findViewById(R.id.frame_layout);
+                ImageView imgSwipe = findViewById(R.id.imgSwipe);
                 if (initialY < finalY) {
                     try { //Increase the position in the background color list / image mood list and display it.
                         mMood.setLstPosition(mMood.getLstPosition() + 1);
