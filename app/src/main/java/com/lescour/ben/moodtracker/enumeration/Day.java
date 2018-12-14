@@ -1,4 +1,4 @@
-package com.lescour.ben.moodtracker.Enum;
+package com.lescour.ben.moodtracker.enumeration;
 
 import com.lescour.ben.moodtracker.R;
 

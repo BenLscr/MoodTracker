@@ -1,4 +1,4 @@
-package com.lescour.ben.moodtracker.Model;
+package com.lescour.ben.moodtracker.model;
 
 /**
  * Created by benja on 12/11/2018.

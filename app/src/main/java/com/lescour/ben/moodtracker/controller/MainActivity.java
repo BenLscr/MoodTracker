@@ -1,4 +1,4 @@
-package com.lescour.ben.moodtracker.Controller;
+package com.lescour.ben.moodtracker.controller;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.lescour.ben.moodtracker.Model.Mood;
+import com.lescour.ben.moodtracker.model.Mood;
 import com.lescour.ben.moodtracker.R;
 
 import java.text.SimpleDateFormat;
@@ -26,17 +26,17 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.lescour.ben.moodtracker.Enum.Mood.DISAPPOINTED;
-import static com.lescour.ben.moodtracker.Enum.Mood.HAPPY;
-import static com.lescour.ben.moodtracker.Enum.Mood.NORMAL;
-import static com.lescour.ben.moodtracker.Enum.Mood.SAD;
-import static com.lescour.ben.moodtracker.Enum.Mood.SUPER_HAPPY;
+import static com.lescour.ben.moodtracker.enumeration.Mood.DISAPPOINTED;
+import static com.lescour.ben.moodtracker.enumeration.Mood.HAPPY;
+import static com.lescour.ben.moodtracker.enumeration.Mood.NORMAL;
+import static com.lescour.ben.moodtracker.enumeration.Mood.SAD;
+import static com.lescour.ben.moodtracker.enumeration.Mood.SUPER_HAPPY;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private Mood mMood;
     private String currentDay;
-    private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD, DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
+    private List<com.lescour.ben.moodtracker.enumeration.Mood> lst_mood = Arrays.asList(SAD, DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
     private float initialY;  //Position where you down your finger on the screen.
     private Dialog addComment;
     private EditText commentInput;

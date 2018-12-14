@@ -1,4 +1,4 @@
-package com.lescour.ben.moodtracker.Controller;
+package com.lescour.ben.moodtracker.controller;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.lescour.ben.moodtracker.Model.Mood;
+import com.lescour.ben.moodtracker.model.Mood;
 import com.lescour.ben.moodtracker.R;
 
 import java.text.SimpleDateFormat;
@@ -20,18 +20,18 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
-import static com.lescour.ben.moodtracker.Enum.Day.FIVEDAYSAGO;
-import static com.lescour.ben.moodtracker.Enum.Day.FOURDAYSAGO;
-import static com.lescour.ben.moodtracker.Enum.Day.ONEWEEKAGO;
-import static com.lescour.ben.moodtracker.Enum.Day.SIXDAYSAGO;
-import static com.lescour.ben.moodtracker.Enum.Day.THREEDAYSAGO;
-import static com.lescour.ben.moodtracker.Enum.Day.TWODAYSAGO;
-import static com.lescour.ben.moodtracker.Enum.Day.YESTERDAY;
-import static com.lescour.ben.moodtracker.Enum.Mood.DISAPPOINTED;
-import static com.lescour.ben.moodtracker.Enum.Mood.HAPPY;
-import static com.lescour.ben.moodtracker.Enum.Mood.NORMAL;
-import static com.lescour.ben.moodtracker.Enum.Mood.SAD;
-import static com.lescour.ben.moodtracker.Enum.Mood.SUPER_HAPPY;
+import static com.lescour.ben.moodtracker.enumeration.Day.FIVEDAYSAGO;
+import static com.lescour.ben.moodtracker.enumeration.Day.FOURDAYSAGO;
+import static com.lescour.ben.moodtracker.enumeration.Day.ONEWEEKAGO;
+import static com.lescour.ben.moodtracker.enumeration.Day.SIXDAYSAGO;
+import static com.lescour.ben.moodtracker.enumeration.Day.THREEDAYSAGO;
+import static com.lescour.ben.moodtracker.enumeration.Day.TWODAYSAGO;
+import static com.lescour.ben.moodtracker.enumeration.Day.YESTERDAY;
+import static com.lescour.ben.moodtracker.enumeration.Mood.DISAPPOINTED;
+import static com.lescour.ben.moodtracker.enumeration.Mood.HAPPY;
+import static com.lescour.ben.moodtracker.enumeration.Mood.NORMAL;
+import static com.lescour.ben.moodtracker.enumeration.Mood.SAD;
+import static com.lescour.ben.moodtracker.enumeration.Mood.SUPER_HAPPY;
 
 /**
  * Created by benja on 01/11/2018.
@@ -42,9 +42,9 @@ public class HistoricActivity extends AppCompatActivity {
     private Mood mMood;
     private String currentDay;
     private int customWidth;
-    private List<com.lescour.ben.moodtracker.Enum.Mood> lst_mood = Arrays.asList(SAD,
+    private List<com.lescour.ben.moodtracker.enumeration.Mood> lst_mood = Arrays.asList(SAD,
             DISAPPOINTED, NORMAL, HAPPY, SUPER_HAPPY);
-    private List<com.lescour.ben.moodtracker.Enum.Day> lst_day = Arrays.asList(YESTERDAY,
+    private List<com.lescour.ben.moodtracker.enumeration.Day> lst_day = Arrays.asList(YESTERDAY,
             TWODAYSAGO, THREEDAYSAGO, FOURDAYSAGO, FIVEDAYSAGO, SIXDAYSAGO, ONEWEEKAGO);
 
    @Override
