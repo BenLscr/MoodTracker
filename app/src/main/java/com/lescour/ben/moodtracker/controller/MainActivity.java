@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText commentInput;
     private String jsonMood;
     private String lastMood;
+    private MediaPlayer mp;
 
     /**
      * Start the application with happy mood, his appropriate background color , historic button and
@@ -169,18 +171,28 @@ public class MainActivity extends AppCompatActivity {
                 ImageView imgSwipe = findViewById(R.id.imgSwipe);
                 if (initialY < finalY) {
                     try { //Increase the position in the background color list / image mood list and display it.
+                        if (mp != null) {
+                            mp.stop();
+                        }
                         mMood.setLstPosition(mMood.getLstPosition() + 1);
                         frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
                         imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
+                        mp = MediaPlayer.create(this, lst_mood.get(mMood.getLstPosition()).getSong());
+                        mp.start();
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(lst_mood.size()-1);
                     }
                 }
                 if (initialY > finalY) {
                     try { //Decrease the position in the background color list / image mood list and display it.
+                        if (mp != null) {
+                            mp.stop();
+                        }
                         mMood.setLstPosition(mMood.getLstPosition() - 1);
                         frameLayout.setBackgroundColor(getResources().getColor(lst_mood.get(mMood.getLstPosition()).getColor()));
                         imgSwipe.setImageResource(lst_mood.get(mMood.getLstPosition()).getSmiley());
+                        mp = MediaPlayer.create(this, lst_mood.get(mMood.getLstPosition()).getSong());
+                        mp.start();
                     } catch (ArrayIndexOutOfBoundsException e) {
                         mMood.setLstPosition(0);
                     }
